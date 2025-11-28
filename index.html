@@ -60,6 +60,7 @@
         nav a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         nav a:hover { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
 
+        /* --- HERO ORIGINAL --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -67,21 +68,35 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #0077b630 0%, var(--bg-deep) 80%);
+            background: radial-gradient(circle at center, #0077b620 0%, var(--bg-deep) 70%);
+            position: relative;
             padding: 0 20px;
         }
 
+        /* Rejilla de fondo estilo Tron para el Hero */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 180, 216, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 180, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+        }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(90deg, #fff, var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px var(--thot-blue);
+            letter-spacing: 2px;
         }
 
         .btn-main {
             padding: 12px 30px;
-            background: linear-gradient(45deg, var(--thot-blue), var(--neon-cyan));
+            background: linear-gradient(90deg, var(--thot-blue), var(--neon-cyan));
             color: #fff;
             font-family: 'Orbitron', sans-serif;
             text-decoration: none;
@@ -89,19 +104,43 @@
             box-shadow: 0 0 15px var(--thot-blue);
             margin-top: 20px;
             display: inline-block;
+            font-weight: bold;
+            border: 1px solid var(--neon-cyan);
+        }
+
+        .btn-main:hover {
+            box-shadow: 0 0 25px var(--neon-cyan);
+            transform: scale(1.05);
+            transition: 0.3s;
         }
 
         section { padding: 4rem 4%; scroll-margin-top: 70px; }
         .section-title { text-align: center; margin-bottom: 3rem; font-size: 2rem; color: #fff; }
         .section-title span { color: var(--neon-cyan); font-size: 1rem; display: block; letter-spacing: 3px; margin-bottom: 10px; }
 
+        /* --- MISION VISION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            background: linear-gradient(180deg, var(--bg-deep) 0%, #081020 100%);
+        }
+        .about-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-left: 4px solid var(--neon-cyan);
+            border-radius: 0 10px 10px 0;
+        }
+        .about-card h3 { color: var(--neon-cyan); margin-bottom: 1rem; }
+
+
+        /* --- ORGANIGRAMA --- */
         .org-chart {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 2rem;
         }
-
         .ceo-box {
             background: var(--thot-blue);
             padding: 1rem 3rem;
@@ -111,14 +150,12 @@
             border: 2px solid #fff;
             margin-bottom: 1rem;
         }
-
         .departments-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             width: 100%;
         }
-
         .dept-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(0, 119, 182, 0.5);
@@ -127,12 +164,10 @@
             transition: 0.3s;
             height: 100%;
         }
-
         .dept-card:hover { 
             background: rgba(0, 119, 182, 0.15); 
             border-color: var(--neon-cyan);
         }
-
         .dept-card h4 { 
             color: var(--neon-cyan); 
             font-size: 1.1rem; 
@@ -143,65 +178,90 @@
             align-items: center;
             gap: 10px;
         }
+        .dept-card ul { list-style: none; padding-left: 5px; }
+        .dept-card ul li { margin-bottom: 8px; font-size: 0.9rem; color: var(--text-sec); position: relative; padding-left: 15px; }
+        .dept-card ul li::before { content: '•'; color: var(--neon-cyan); position: absolute; left: 0; }
 
-        .dept-card ul {
-            list-style: none;
-            padding-left: 5px;
+        /* --- CATALOGO COMERCIAL (GRID DE 6) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
         }
-
-        .dept-card ul li {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--text-sec);
+        .service-card {
+            background: rgba(12, 20, 35, 0.6);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: 0.4s;
             position: relative;
-            padding-left: 15px;
+            overflow: hidden;
         }
-
-        .dept-card ul li::before {
-            content: '•';
+        .service-card:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 119, 182, 0.1);
+            transform: translateY(-5px);
+        }
+        .service-icon {
+            font-size: 2.5rem;
             color: var(--neon-cyan);
+            margin-bottom: 1.5rem;
+        }
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .service-card ul {
+            list-style: none;
+            color: var(--text-sec);
+            font-size: 0.95rem;
+        }
+        .service-card ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .service-card ul li::before {
+            content: '►';
+            color: var(--thot-blue);
             position: absolute;
             left: 0;
+            font-size: 0.8rem;
         }
 
+        /* --- CATALOGO TI INTERNO (DETALLADO) --- */
         .catalog-container {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 3rem;
         }
-
         .catalog-category {
             background: rgba(10, 20, 40, 0.6);
             padding: 2rem;
             border-radius: 15px;
             border: 1px solid #1e3a8a;
         }
-
         .category-header {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: #fff;
         }
-        
-        .category-header i { font-size: 2rem; color: var(--neon-cyan); }
-
-        .services-grid {
+        .category-header i { font-size: 1.8rem; color: var(--neon-cyan); }
+        .services-detail-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
-
         .service-detail-card {
             background: rgba(0, 0, 0, 0.4);
             padding: 1.5rem;
             border-left: 3px solid var(--thot-blue);
             transition: 0.3s;
         }
-
         .service-detail-card:hover { background: rgba(0, 180, 216, 0.1); border-left-color: var(--neon-cyan); }
-
         .service-detail-card h5 {
             color: #fff;
             font-size: 1.1rem;
@@ -209,26 +269,24 @@
             font-family: 'Rajdhani', sans-serif;
             font-weight: 700;
         }
-
         .service-detail-card p {
             font-size: 0.9rem;
             color: #ccc;
             line-height: 1.4;
         }
 
+        /* --- ARQUITECTURA --- */
         .arch-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             align-items: center;
         }
-
         .layers-visual {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         .layer-box {
             padding: 1.5rem;
             border-radius: 8px;
@@ -237,7 +295,6 @@
             position: relative;
             color: #fff;
         }
-
         .layer-core { background: linear-gradient(90deg, #7f1d1d, #b91c1c); border: 1px solid #ef4444; }
         .layer-dist { background: linear-gradient(90deg, #1e3a8a, #1d4ed8); border: 1px solid #3b82f6; }
         .layer-access { background: linear-gradient(90deg, #064e3b, #059669); border: 1px solid #10b981; }
@@ -250,7 +307,6 @@
             background: rgba(6, 182, 212, 0.1);
             text-align: left;
         }
-
         .protocol-tag {
             display: inline-block;
             background: #1e293b;
@@ -284,18 +340,30 @@
         <nav>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#organigrama">Organigrama</a></li>
-                <li><a href="#catalogo">Catálogo Completo</a></li>
-                <li><a href="#arquitectura">Red IoT</a></li>
+                <li><a href="#catalogo-ti">TI Interno</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero" id="inicio">
-        <h1>CONECTIVIDAD INTEGRAL</h1>
-        <p>Soluciones tecnológicas avanzadas, seguridad informática y sistemas IoT.</p>
-        <p style="color: var(--neon-cyan); margin-top: 10px;">Visión 2030: Referentes en innovación regional.</p>
-        <a href="#catalogo" class="btn-main">Explorar Servicios</a>
+        <h1>CONECTIVIDAD SIN LÍMITES</h1>
+        <p style="font-size: 1.2rem; color: var(--text-sec); max-width: 800px;">
+            Soluciones tecnológicas integrales para hogares y empresas. Reduciendo la brecha digital con innovación y seguridad.
+        </p>
+        <a href="#servicios" class="btn-main">Conoce Nuestra Visión 2030</a>
+    </section>
+
+    <section class="about-grid" id="nosotros">
+        <div class="about-card">
+            <h3><i class="fa-solid fa-rocket"></i> Nuestra Misión</h3>
+            <p>Conectar hogares y empresas con soluciones ágiles y seguras. Mejoramos la eficiencia y estabilidad de tus entornos, impulsando el desarrollo tecnológico.</p>
+        </div>
+        <div class="about-card">
+            <h3><i class="fa-solid fa-eye"></i> Visión 2030</h3>
+            <p>Ser líderes referentes en el sector tecnológico regional. Innovación constante y compromiso inquebrantable con la excelencia en el servicio al cliente.</p>
+        </div>
     </section>
 
     <section id="organigrama">
@@ -320,7 +388,6 @@
                         <li>Estrategia y Planificación</li>
                     </ul>
                 </div>
-
                 <div class="dept-card">
                     <h4><i class="fa-solid fa-bullhorn"></i> Comercial y Marketing</h4>
                     <ul>
@@ -331,7 +398,6 @@
                         <li>Contenido y SEO/SEM</li>
                     </ul>
                 </div>
-
                 <div class="dept-card">
                     <h4><i class="fa-solid fa-gears"></i> Operaciones</h4>
                     <ul>
@@ -344,7 +410,6 @@
                         <li>Capacitación Técnica</li>
                     </ul>
                 </div>
-
                 <div class="dept-card">
                     <h4><i class="fa-solid fa-laptop-code"></i> Departamento TI</h4>
                     <ul>
@@ -355,7 +420,6 @@
                         <li>Servicios de Hardware y Mantenimiento</li>
                     </ul>
                 </div>
-
                 <div class="dept-card">
                     <h4><i class="fa-solid fa-truck-fast"></i> Logística y Suministro</h4>
                     <ul>
@@ -364,7 +428,6 @@
                         <li>Compras Estratégicas</li>
                     </ul>
                 </div>
-
                 <div class="dept-card">
                     <h4><i class="fa-solid fa-calculator"></i> Administración y Finanzas</h4>
                     <ul>
@@ -373,7 +436,6 @@
                         <li>Presupuestos y Control de Costos</li>
                     </ul>
                 </div>
-
                 <div class="dept-card">
                     <h4><i class="fa-solid fa-users"></i> Recursos Humanos</h4>
                     <ul>
@@ -386,30 +448,93 @@
         </div>
     </section>
 
-    <section id="catalogo" style="background: linear-gradient(to bottom, #050a14, #0a1529);">
+    <section class="services" id="servicios">
+        <div class="section-title">
+            <span>CATÁLOGO DE SERVICIOS</span>
+            <h2>Soluciones Especializadas</h2>
+        </div>
+
+        <div class="grid-container">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <h3>Infraestructura y Seguridad</h3>
+                <ul>
+                    <li>Administración de redes.</li>
+                    <li>Seguridad perimetral (Firewall).</li>
+                    <li>Monitoreo de sistemas.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-camera"></i></div>
+                <h3>Videovigilancia e IoT</h3>
+                <ul>
+                    <li>Cámaras de seguridad.</li>
+                    <li>Sistema Wiser (Domótica).</li>
+                    <li>Conectividad VLAN IoT.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-computer"></i></div>
+                <h3>Hardware y Mantenimiento</h3>
+                <ul>
+                    <li>Venta de equipos de cómputo.</li>
+                    <li>Mantenimiento preventivo.</li>
+                    <li>Gestión de activos.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+                <h3>Desarrollo y Automatización</h3>
+                <ul>
+                    <li>Apps a la medida.</li>
+                    <li>Integración ERP.</li>
+                    <li>Reportes de Negocio.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Aplicaciones de Negocio</h3>
+                <ul>
+                    <li>Gestión CRM.</li>
+                    <li>Soporte a ventas.</li>
+                    <li>Gestión de proyectos.</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>Soporte y Mesa de Ayuda</h3>
+                <ul>
+                    <li>Soporte técnico Nivel 1 y 2.</li>
+                    <li>Gestión de incidencias.</li>
+                    <li>Capacitación.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalogo-ti" style="background: linear-gradient(to bottom, #050a14, #0a1529);">
         <div class="section-title">
             <span>CATÁLOGO DE SERVICIOS TI</span>
-            <h2>Oferta de Valor Detallada</h2>
+            <h2>Oferta de Valor (Interno)</h2>
         </div>
 
         <div class="catalog-container">
-            
             <div class="catalog-category">
                 <div class="category-header">
                     <i class="fa-solid fa-shield-halved"></i>
                     <h3>1. Servicios de Infraestructura y Seguridad</h3>
                 </div>
-                <div class="services-grid">
+                <div class="services-detail-grid">
                     <div class="service-detail-card">
                         <h5>Infraestructura y Gestión de Redes</h5>
                         <p><strong>Rol:</strong> Se encarga de la administración de la red, incluyendo el direccionamiento IP y la segmentación por áreas, con el objetivo de optimizar el rendimiento y la seguridad.</p>
                     </div>
                     <div class="service-detail-card">
-                        <h5>Seguridad de la Información y Gobernanza</h5>
+                        <h5>Seguridad de la Información</h5>
                         <p><strong>Rol:</strong> Se enfoca en la protección de los activos digitales y la información sensible, gestionando firewall, VPN para acceso seguro y monitoreo constante.</p>
                     </div>
                     <div class="service-detail-card">
-                        <h5>Monitoreo de Sistemas y Rendimiento</h5>
+                        <h5>Monitoreo de Sistemas</h5>
                         <p><strong>Rol:</strong> Asegura la estabilidad y disponibilidad de aplicaciones críticas mediante supervisión proactiva de red, servidores y almacenamiento.</p>
                     </div>
                 </div>
@@ -418,19 +543,19 @@
             <div class="catalog-category">
                 <div class="category-header">
                     <i class="fa-solid fa-chart-pie"></i>
-                    <h3>2. Aplicaciones de Negocio y Plataformas de Datos</h3>
+                    <h3>2. Aplicaciones de Negocio</h3>
                 </div>
-                <div class="services-grid">
+                <div class="services-detail-grid">
                     <div class="service-detail-card">
                         <h5>Gestión de Ventas y CRM</h5>
-                        <p><strong>Rol:</strong> Provee soporte para las plataformas utilizadas para gestionar el ciclo de vida de los clientes, desde el primer contacto hasta la venta y soporte post-venta.</p>
+                        <p><strong>Rol:</strong> Provee soporte para las plataformas utilizadas para gestionar el ciclo de vida de los clientes, desde el primer contacto hasta la venta.</p>
                     </div>
                     <div class="service-detail-card">
                         <h5>Gestión de Inventario y Activos</h5>
                         <p><strong>Rol:</strong> Soporte técnico especializado para sistemas que rastrean inventario de cómputo, periféricos y seguimiento de activos empresariales.</p>
                     </div>
                     <div class="service-detail-card">
-                        <h5>Plataformas de Proyectos y Tareas</h5>
+                        <h5>Plataformas de Proyectos</h5>
                         <p><strong>Rol:</strong> Soporte y mantenimiento a herramientas para organizar y monitorear la instalación y mantenimiento de redes y videovigilancia.</p>
                     </div>
                 </div>
@@ -439,11 +564,11 @@
             <div class="catalog-category">
                 <div class="category-header">
                     <i class="fa-solid fa-code"></i>
-                    <h3>3. Desarrollo de Software y Automatización</h3>
+                    <h3>3. Desarrollo y Automatización</h3>
                 </div>
-                <div class="services-grid">
+                <div class="services-detail-grid">
                     <div class="service-detail-card">
-                        <h5>Desarrollo de Aplicaciones Internas</h5>
+                        <h5>Desarrollo de Apps Internas</h5>
                         <p><strong>Rol:</strong> Creación y mantenimiento de software a la medida para optimizar procesos administrativos y operativos internos.</p>
                     </div>
                     <div class="service-detail-card">
@@ -460,15 +585,15 @@
             <div class="catalog-category">
                 <div class="category-header">
                     <i class="fa-solid fa-headset"></i>
-                    <h3>4. Soporte al Usuario y Mesa de Ayuda</h3>
+                    <h3>4. Soporte y Mesa de Ayuda</h3>
                 </div>
-                <div class="services-grid">
+                <div class="services-detail-grid">
                     <div class="service-detail-card">
-                        <h5>Soporte Nivel 1 y 2 (Mesa de Ayuda)</h5>
+                        <h5>Soporte Nivel 1 y 2</h5>
                         <p><strong>Rol:</strong> Punto central para atención a usuarios, gestión de incidencias y manejo de cambios a través de herramientas de gestión de servicios.</p>
                     </div>
                     <div class="service-detail-card">
-                        <h5>Incorporación, Desvinculación y Capacitación</h5>
+                        <h5>Capacitación (Onboarding)</h5>
                         <p><strong>Rol:</strong> Formaliza procesos de onboarding/offboarding y ofrece capacitación básica para el uso efectivo de la tecnología.</p>
                     </div>
                 </div>
@@ -479,22 +604,21 @@
                     <i class="fa-solid fa-server"></i>
                     <h3>5. Hardware y Mantenimiento</h3>
                 </div>
-                <div class="services-grid">
+                <div class="services-detail-grid">
                     <div class="service-detail-card">
-                        <h5>Gestión del Ciclo de Vida de Hardware</h5>
+                        <h5>Ciclo de Vida de Hardware</h5>
                         <p><strong>Rol:</strong> Actividades de gestión de activos, inventario y garantías de equipos TI para una planificación eficiente.</p>
                     </div>
                     <div class="service-detail-card">
-                        <h5>Mantenimiento Preventivo y Correctivo</h5>
+                        <h5>Mantenimiento Preventivo</h5>
                         <p><strong>Rol:</strong> Procedimientos para evitar fallas y reparar dispositivos defectuosos mediante mantenimiento programado.</p>
                     </div>
                     <div class="service-detail-card">
-                        <h5>Soporte de Equipos y Periféricos</h5>
+                        <h5>Soporte de Equipos</h5>
                         <p><strong>Rol:</strong> Asistencia técnica especializada para equipos de trabajo, servidores y dispositivos esenciales de operación.</p>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
