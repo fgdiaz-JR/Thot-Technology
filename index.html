@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thot Technology | Soluciones Integrales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-deep: #050a14;       
+            --thot-blue: #0077b6;     
+            --neon-cyan: #00b4d8;     
+            --highlight: #90e0ef;     
+            --glass: rgba(12, 20, 35, 0.85); 
+            --text-main: #edf2f4;
+            --text-sec: #bde0fe;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 10, 20, 0.95);
+            border-bottom: 2px solid var(--thot-blue);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 119, 182, 0.3);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i { color: var(--neon-cyan); } 
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        nav a:hover { color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #0077b620 0%, var(--bg-deep) 70%);
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 180, 216, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 180, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s infinite alternate;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-sec);
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .btn-main {
+            padding: 12px 35px;
+            background: linear-gradient(45deg, var(--thot-blue), var(--neon-cyan));
+            border: none;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 15px var(--thot-blue);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--neon-cyan);
+            color: #fff;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 5rem 10%;
+            background: linear-gradient(180deg, var(--bg-deep) 0%, #081020 100%);
+            scroll-margin-top: 80px;
+        }
+
+        .about-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-left: 4px solid var(--neon-cyan);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .about-card h3 { color: var(--neon-cyan); margin-bottom: 1rem; }
+
+        .services {
+            padding: 5rem 5%;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .section-header span {
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(12, 20, 35, 0.6);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 119, 182, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .service-card ul {
+            list-style: none;
+            color: var(--text-sec);
+            font-size: 0.95rem;
+        }
+
+        .service-card ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .service-card ul li::before {
+            content: '►';
+            color: var(--thot-blue);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .tech-section {
+            padding: 5rem 10%;
+            background: #02050a;
+            border-top: 1px solid var(--thot-blue);
+            border-bottom: 1px solid var(--thot-blue);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            scroll-margin-top: 80px;
+        }
+
+        .tech-text { flex: 1; min-width: 300px; }
+        .tech-visual { flex: 1; min-width: 300px; display: flex; justify-content: center; }
+
+        .tech-box {
+            background: linear-gradient(135deg, rgba(0,119,182,0.2), rgba(0,0,0,0));
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px dashed var(--neon-cyan);
+        }
+        
+        .node {
+            width: 15px; height: 15px; background: var(--neon-cyan);
+            border-radius: 50%; display: inline-block;
+            box-shadow: 0 0 10px var(--neon-cyan);
+            margin: 0 5px;
+        }
+
+        footer {
+            background: #000;
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: auto;
+            border-top: 3px solid var(--thot-blue);
+        }
+
+        footer h4 {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        footer p { color: #555; font-size: 0.9rem; margin-top: 1rem; }
+        
+        .members-list {
+            color: var(--neon-cyan);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            header nav { display: none; } 
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(0,180,216,0.2); }
+            to { text-shadow: 0 0 20px rgba(0,180,216,0.8); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-ankh"></i>
+            THOT TECHNOLOGY
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#mision">Nosotros</a></li>
+                <li><a href="#servicios">Catálogo</a></li>
+                <li><a href="#tecnologia">Infraestructura</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>CONECTIVIDAD SIN LÍMITES</h1>
+            <p>Soluciones tecnológicas integrales para hogares y empresas. Reduciendo la brecha digital con innovación y seguridad.</p>
+            <a href="#mision" class="btn-main">Conoce Nuestra Visión 2030</a>
+        </div>
+    </section>
+
+    <section class="about-grid" id="mision">
+        <div class="about-card">
+            <h3><i class="fa-solid fa-rocket"></i> Nuestra Misión</h3>
+            <p>Conectar hogares y empresas con soluciones ágiles y seguras. Mejoramos la eficiencia y estabilidad de tus entornos, impulsando el desarrollo tecnológico.</p>
+        </div>
+        <div class="about-card">
+            <h3><i class="fa-solid fa-eye"></i> Visión 2030</h3>
+            <p>Ser líderes referentes en el sector tecnológico regional. Innovación constante y compromiso inquebrantable con la excelencia en el servicio al cliente.</p>
+        </div>
+    </section>
+
+    <section class="services" id="servicios">
+        <div class="section-header">
+            <span>CATÁLOGO DE SERVICIOS</span>
+            <h2>Soluciones Especializadas</h2>
+        </div>
+
+        <div class="grid-container">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <h3>Infraestructura y Seguridad</h3>
+                <ul>
+                    <li>Administración de redes y direccionamiento IP.</li>
+                    <li>Seguridad perimetral (Firewall, VPN).</li>
+                    <li>Monitoreo de sistemas y rendimiento.</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-camera"></i></div>
+                <h3>Videovigilancia e IoT</h3>
+                <ul>
+                    <li>Implementación de cámaras de seguridad.</li>
+                    <li>Integración sistema <strong>Wiser</strong> (Domótica).</li>
+                    <li>Conectividad segura VLAN IoT.</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-computer"></i></div>
+                <h3>Hardware y Mantenimiento</h3>
+                <ul>
+                    <li>Venta de equipos de cómputo y periféricos.</li>
+                    <li>Mantenimiento preventivo y correctivo.</li>
+                    <li>Gestión del ciclo de vida de activos.</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+                <h3>Desarrollo y Automatización</h3>
+                <ul>
+                    <li>Desarrollo de aplicaciones internas a medida.</li>
+                    <li>Gestión de Sistemas ERP.</li>
+                    <li>Inteligencia de Negocios y Reportes.</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Aplicaciones de Negocio</h3>
+                <ul>
+                    <li>Gestión de plataformas CRM.</li>
+                    <li>Soporte a ventas corporativas.</li>
+                    <li>Plataformas de gestión de proyectos.</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>Soporte y Mesa de Ayuda</h3>
+                <ul>
+                    <li>Soporte técnico Nivel 1 y 2.</li>
+                    <li>Gestión de incidencias.</li>
+                    <li>Capacitación tecnológica al personal.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-section" id="tecnologia">
+        <div class="tech-text">
+            <h2>Arquitectura Avanzada</h2>
+            <p style="color: var(--text-sec); margin-bottom: 20px;">
+                Implementamos una <strong>Topología Jerárquica de Tres Capas</strong> (Núcleo, Distribución y Acceso) para garantizar escalabilidad y tolerancia a fallos.
+            </p>
+            <ul style="list-style: none; color: var(--text-main);">
+                <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--neon-cyan);"></i> Protocolos Seguros: SSH, SNMP, DHCP.</li>
+                <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--neon-cyan);"></i> Segmentación VLAN para IoT (Wiser).</li>
+                <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--neon-cyan);"></i> Monitoreo proactivo 24/7.</li>
+            </ul>
+        </div>
+        <div class="tech-visual">
+            <div class="tech-box">
+                <div style="text-align: center; margin-bottom: 15px; color: var(--neon-cyan); font-weight: bold;">DIAGRAMA DE RED</div>
+                <div style="text-align: center;">
+                    <div class="node"></div><div class="node"></div><div class="node"></div>
+                    <div style="height: 20px; border-left: 2px solid var(--thot-blue); width: 2px; margin: 0 auto;"></div>
+                    <div class="node"></div><div class="node"></div>
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: #fff;">Core • Distribución • Acceso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            THOT TECHNOLOGY
+        </div>
+        <h4>Equipo de Desarrollo</h4>
+        <div class="members-list">
+            Juan David Arango Camilo <br>
+            Ferney Gustavo Diaz Camargo
+        </div>
+        <p>&copy; 2025 Thot Technology. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
